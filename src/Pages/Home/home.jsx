@@ -22,7 +22,7 @@ function Home() {
         <picture className='flex drop-shadow-[10px_-10px_0_rgb(215,189,226,1)]
               border-black rounded-tl-[150px] rounded-br-[150px]
               rounded-xl overflow-hidden 
-            '>
+            ' object-center>
 
               <source srcSet={HeroSm} width='363' height='222' 
               media='(max-width: 400px)' type='image/png' />
