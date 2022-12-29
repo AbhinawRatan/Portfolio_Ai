@@ -14,28 +14,28 @@ export const portfolioData = [
         thumbnail: Cookaway,
         alt: "A photo showcasing work that i did for abhi",
         category: "Website",
-        link:"#"
+        link:"https://github.com/AbhinawRatan/Cookaway"
     },
     {
         tittle: "JuetAR Navigation",
         thumbnail: JuetAR,
         alt: "A photo showcasing work that i did for juetAR application",
         category: "Website",
-        link:"#"
+        link:"https://github.com/AbhinawRatan/Juet_AR_Web"
     },
     {
         tittle: "Darjelling",
         thumbnail: Darjelling,
         alt: "A photo showcasing work that i did for abhi",
-        category: "Website",
-        link:"#"
+        category: "Video",
+        link:"https://youtu.be/SJJ8-VRVC_8"
     },
     {
         tittle: "Meta World Effect",
         thumbnail: Darjelling,
         alt: "A photo showcasing work that i did for abhi",
-        category: "Website",
-        link:"#"
+        category: "Ar filter",
+        link:"https://www.instagram.com/ar/605212390685276/"
     }
     
 ]
@@ -66,11 +66,6 @@ export const socials = [
         alt : "Follow me on You tube",
         link: "https://www.instagram.com/abhinaw.ratan17/?hl=en"
     },
-     {
-        name : "YouTube",
-        icon: Youtube,
-        alt : "Follow me on You tube",
-        link: "https://www.youtube.com/@abhinawratan6908"
-    },
+     
    
 ]

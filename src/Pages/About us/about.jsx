@@ -14,10 +14,8 @@ function About() {
       <div>
         <h1 className='text-4xl lg:text-5xl xl:text-7xl font-bold mb-4'>My Story</h1>
         <p className='mb-2 text-lg'>
-        I am Abhinaw Ratan, a third-year engineering student with a passion for web development. As an aspiring full stack
-        web developer, I am constantly seeking to expand my skillset and knowledge of the latest technologies and best
-        practices. I am dedicated to producing high-quality work and am always looking for opportunities to learn and grow
-        as a developer.
+        I'm Abhinaw Ratan, a web developer who is a third-year engineering student. As a future full stack web developer, I'm always looking to broaden my skill set and expertise in current methodologies. I am committed to delivering top-notch work and am constantly searching for chances to improve and advance as a developer.
+        
         </p>
        
         <div className='text-lg font-bold'>Find me on:</div>

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link,NavLink } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link';
 import { Logo } from '../assets/'
-const activeClassName = "relative before:content-['*'] before:-top-4 before:left-1/2 before:-ml-1 before:absolute before:text-purple-400"
+const activeClassName = "relative before:content-['*'] before:-top-4 before:left-1/2 before:-ml-1 before:absolute before:text-purple-400";
+
 function Header() {
   return (
     <header className='grid grid-cols-2 md:grid-cols-[180px_1fr_180px] border-black border-2 bg-white'>
@@ -22,9 +24,10 @@ function Header() {
         <ul className=' col-span-flexs gap-4 flex  max-w-sm overflow-auto
         snap-always p-4 text-lg '>
             <li>
-            <NavLink to='/' className={({ isActive }) =>
-              isActive ? activeClassName : undefined
-            }>
+              
+            <NavLink to='/'>
+              
+          
                     Home
                 </NavLink>
 
@@ -47,19 +50,15 @@ function Header() {
 
             </li>
             <li>
-            <NavLink to='/blogs' className={({ isActive }) =>
+            <HashLink to= '#blog' className={({ isActive }) =>
               isActive ? activeClassName : undefined
             }>
                     Blog
-                </NavLink>
+                </HashLink>
 
             </li>
             <li>
-            <NavLink to='https://drive.google.com/file/d/1ByGdsL8xQAlqIzBsQwy87gQ856ObcJX6/view?usp=sharing' className={({ isActive }) =>
-              isActive ? activeClassName : undefined
-            }>
-                    Resume
-                </NavLink>
+           <a href="https://drive.google.com/file/d/1ByGdsL8xQAlqIzBsQwy87gQ856ObcJX6/view"> Resume</a>
 
             </li>
            

@@ -7,8 +7,9 @@ import Footer from '../../componets/footer'
 import { socials } from '../../data'
 
 
-import { Hero,HeroMd,Logo,Background, BoyImage } from '../../assets'
+import { HeroSm,HeroMd,Logo,Background, BoyImage,HeroLg } from '../../assets'
 import { portfolioData } from '../../data'
+import { NavLink } from 'react-router-dom'
 
 function Home() {
     //user defined components must strt from capital letters
@@ -16,14 +17,23 @@ function Home() {
     <div className='border-black border-x-2'>
       <section className=''>
 
-      <div className='container mx-auto gap-8 px-4 flex flex-col md:flex-row '>
-        <div className='md:flex-1 md: order-2 py-20'>
-            <picture className=' item-center  p-4 justify-center' >
-          <img src={HeroMd} alt='' height='1080' width='1280'/>
-          </picture>  
+      <div className='container mx-auto gap-8 px-4 flex flex-col md:flex-row items-center '>
+        <div className='md:flex-1 md: order-2 '>
+        <picture className='flex drop-shadow-[10px_-10px_0_rgb(215,189,226,1)]
+              border-black rounded-tl-[150px] rounded-br-[150px]
+              rounded-xl overflow-hidden 
+            '>
+
+              <source srcSet={HeroSm} width='363' height='222' 
+              media='(max-width: 400px)' type='image/png' />
+              <source srcSet={HeroMd} width='608' height='372' 
+              media='(max-width: 400px)' type='image/jpg' />
+              <img src={HeroLg} width='870' height='532' alt="Me working hard on a computer"/>
+
+            </picture>
             
               </div>
-        <div className='md:flex-1 py-10 lg:py-40 lg:px-10 xl: mb-4'>
+        <div className='md:flex-1 py-10 object-left-top lg:py-40 lg:px-10 xl: mb-4 si'>
 
           <h2 className='text-xl md:text-2xl font-bold'>Hi 👋 I'm Abhinaw</h2>
           <h1 className='text-6xl lg:text-6xl font-bold'
@@ -38,7 +48,7 @@ function Home() {
             bg-violet-500 hover:bg-violet-600 text-white'>
               Selected Work
             </HashLink>
-            <Link to ='/contact 'className='px-6 py-4 rounded-md text-black flex gap-2 hover:text-violet-300'>
+            <Link to ='/contact'className='px-6 py-4 rounded-md text-black flex gap-2 hover:text-violet-300'>
             Let's Talk
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
@@ -78,7 +88,7 @@ function Home() {
       Link="/contact"
       />
   <section id="work" className='px-4 pb-12 border-black border-t-2
-      bg-teal-600 bg-fixed
+      bg-white-600 bg-fixed
     ' style={{ backgroundImage: "url(" + Background + ")" }} >
 
       <div className='container mx-auto'>
@@ -96,7 +106,7 @@ I have gained a lot of experience and knowledge in these fields.
 
         <div className='grid md:grid-cols-2 gap-8 mb-28'>
           {portfolioData.map((item, index) => (
-            <Link to={item.link} key={index} className='
+              <a target='_blank' href={item.link} rel='noopener noreferrer
               md:even:pt-12 ease-in-out duration-75
               hover:translate-y-[-4px] hover:drop-shadow-[10px_8px_0_rgba(0,0,0,1)]
             '>
@@ -117,7 +127,7 @@ I have gained a lot of experience and knowledge in these fields.
         </svg>
 
             </div>
-          </Link>
+          </a>
         ))}
         </div>
         <Link to={'/work'} className="flex text-xl gap-4 font-bold text-white justify-center mb-8">View all work
@@ -131,10 +141,10 @@ I have gained a lot of experience and knowledge in these fields.
     </section>
 
 
-    <section className='border-black border-t-2 px-4 py-12'>
+    <section id='blog' className='border-black border-t-2 px-4 py-12'>
       <div className='container mx-auto px-4 py-12'>
         <div className=' text-center py-12'>
-        <h1 className='text-4xl lg:text-5xl xl: text-7xl font-bold mb-4' >
+        <h1 className='text-4xl lg:text-5xl xl: font-bold mb-4' >
           Blogs!
         </h1>
         <p className='max-w-xl mx-auto text-lg '>
@@ -150,17 +160,17 @@ I have gained a lot of experience and knowledge in these fields.
                 I've been clicking photograps from 5 years now and the beauty that a simple
                 jpg hold is beyond anything.
               </p>
-              <Link to={'/blog-1'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
+              <Link to={'/Blogs/jpeg'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
               </Link>
-              <h3 className='text-xl font-bold mb-4'>PRIZE POSESION</h3>
+              <h3 className='text-xl font-bold mb-4'>AR 101</h3>
               <p className='mb-4 '>
-                I've been clicking photograps from 5 years now and the beauty that a simple
-                jpg hold is beyond anything.
+              In this blog i have shared my insight and basics pf getting started in the world os Augmented Reality 
+              and XR Development in genral
               </p>
-              <Link to={'/blog-1'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
+              <Link to={'/Blogs/AR101'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -177,20 +187,18 @@ I have gained a lot of experience and knowledge in these fields.
             ' /></div>
             <div><h3 className='text-xl font-bold mb-4'>Daizy Night</h3>
               <p className='mb-4 '>
-                I've been clicking photograps from 5 years now and the beauty that a simple
-                jpg hold is beyond anything.
+                This is small blog about my Journey to a small village in phelling and how that moment is soo captivating
               </p>
-              <Link to={'/blog-1'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
+              <Link to={'/Blogs/daizy'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
               </Link>
-              <h3 className='text-xl font-bold mb-4'>The Wishing Lake</h3>
+              <h3 className='text-xl font-bold mb-4'>Stable Diffusion</h3>
               <p className='mb-4 '>
-                I've been clicking photograps from 5 years now and the beauty that a simple
-                jpg hold is beyond anything.
+              Stable Diffusion is a deep learning, text-to-image model released in 2022. It is primarily used to generate detailed images conditioned on text descriptions.
               </p>
-              <Link to={'/blog-1'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
+              <Link to={'/Blogs/imposter'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
