@@ -31,7 +31,7 @@ import { JpegCover,DaizyPic } from '../../../assets'
       <div className='container mx-auto px-4'>
 
         <h1 className='text-4xl font-bold mb-4 '>Story</h1>
-        <p className='text-lg font-medium pb-4'>It's been a tough year for everyone, and I'm no exception. I've been going through some difficult times, and it's been weighing heavily on me. I needed something to lift my spirits and bring some joy back into my life. So, when I heard about a trip to Darjeeling in June 2022, I jumped at the opportunity.</p>
+
 
 <p className='text-lg font-medium mb-4'>As someone who has been clicking photos with their mobile for the past five years, I can confidently say that each and every moment I have captured holds a special place in my heart. For me, photography is more than just a hobby - it's a way for me to escape reality and transport myself back to a specific moment in time.
 </p>
