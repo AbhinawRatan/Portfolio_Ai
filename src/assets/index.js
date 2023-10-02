@@ -20,9 +20,10 @@ import DaizyCover from './icons/ai.jpg'
 import DaizyPic from './Daizy.jpg'
 import JpegCover from './Jpeg.jpg'
 import ArCover from './icons/at.jpg'
-import Arpic from './ar.jpg'
+import Arpic from './ar.png'
 import StableCover from './stable.png'
 import Stablepic from './stable_cover.jpg'
+import Telegram from "./Telegram.png"
 
 
 
@@ -52,5 +53,6 @@ export { Logo,
     ArCover,
     Arpic,
     StableCover,
-    Stablepic
+    Stablepic,
+    Telegram,
 }

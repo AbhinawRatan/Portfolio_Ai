@@ -58,7 +58,7 @@ function Header() {
 
             </li>
             <li>
-           <a href="https://drive.google.com/file/d/1ByGdsL8xQAlqIzBsQwy87gQ856ObcJX6/view"> Resume</a>
+           <a href="https://drive.google.com/file/d/1ebdXjuU1O0QmhHZZ8IFRqJPCCNfBQNx8/view?usp=sharing"> Resume</a>
 
             </li>
            

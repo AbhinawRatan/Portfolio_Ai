@@ -6,37 +6,39 @@ import {Cookaway,
     Github,
     Instagram,
     LinkedIn,Resume} from "./assets"
+    import { Telegram} from "./assets"
 
 
 export const portfolioData = [
     {
-        tittle: "Cookaway",
+        tittle: "Airebot",
         thumbnail: Cookaway,
         alt: "A photo showcasing work that i did for abhi",
-        category: "Website",
-        link:"https://github.com/AbhinawRatan/Cookaway"
+        category: "Ai enabled interview bot",
+        link:"https://www.airebot.live"
     },
     {
-        tittle: "JuetAR Navigation",
+        tittle: "Solanastables",
         thumbnail: JuetAR,
-        alt: "A photo showcasing work that i did for juetAR application",
-        category: "Website",
-        link:"https://github.com/AbhinawRatan/Juet_AR_Web"
+        alt: "A photo showcasing work that i did for solanastables application",
+        category: "Stablecoin Dashboard",
+        link:"https://github.com/AbhinawRatan/StarBoard-Metrics"
     },
     {
-        tittle: "Darjelling",
+        tittle: "Wellness Whisper",
+        thumbnail: Telegram,
+        alt: "A photo showcasing work that i did for abhi",
+        category: "Therapist bot",
+        link:"https://github.com/tknishh/wellness-whisper-peerlist"
+    },
+    {
+        tittle: "Snap AR Bootcamp",
         thumbnail: Darjelling,
         alt: "A photo showcasing work that i did for abhi",
         category: "Video",
-        link:"https://youtu.be/SJJ8-VRVC_8"
-    },
-    {
-        tittle: "Meta World Effect",
-        thumbnail: Darjelling,
-        alt: "A photo showcasing work that i did for abhi",
-        category: "Ar filter",
-        link:"https://www.instagram.com/ar/605212390685276/"
+        link:"https://www.youtube.com/live/WC7NTRAvC7c?feature=share"
     }
+   
     
 ]
 export const socials = [
@@ -50,7 +52,7 @@ export const socials = [
         name : "Resume",
         icon: Resume,
         alt : "Follow me on You tube",
-        link: "https://drive.google.com/file/d/1ByGdsL8xQAlqIzBsQwy87gQ856ObcJX6/view?usp=share_link"
+        link: "https://drive.google.com/file/d/1ebdXjuU1O0QmhHZZ8IFRqJPCCNfBQNx8/view?usp=sharing"
     },
    
     
@@ -66,6 +68,7 @@ export const socials = [
         alt : "Follow me on You tube",
         link: "https://www.instagram.com/abhinaw.ratan17/?hl=en"
     },
+    
      
    
 ]

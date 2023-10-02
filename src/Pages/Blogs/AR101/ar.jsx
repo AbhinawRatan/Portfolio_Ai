@@ -9,7 +9,7 @@ import { ArCover,Arpic } from '../../../assets'
             style={{ backgroundImage: "url(" + ArCover + ")" }}>
             <div className='container mx-auto px-4'>
                 <h2 className='text-lg font-bold uppercase'>Blog</h2>
-                <h1 className='text-4xl lg:text-5xl xl:text-7xl font-bold mb-6'>AR:101</h1>
+                <h1 className='text-4xl lg:text-5xl xl:text-7xl font-bold mb-6'>How i got into SLN-Devloper @Snapchat</h1>
 
                 <div className='text-lg md:flex gap-12'>
 
