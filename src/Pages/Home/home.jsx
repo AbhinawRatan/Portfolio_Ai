@@ -1,217 +1,417 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {HashLink} from 'react-router-hash-link'
-import Scroller from '../../componets/scroller'
-import Contact from '../../componets/contact'
-import Footer from '../../componets/footer'
-import { socials } from '../../data'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { HashLink } from 'react-router-hash-link'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+import { 
+  CodeBracketIcon, 
+  CubeTransparentIcon, 
+  LightBulbIcon, 
+  RocketLaunchIcon,
+  SparklesIcon,
+  CommandLineIcon,
+  PuzzlePieceIcon,
+  BoltIcon
+} from '@heroicons/react/24/outline'
 
+// Import shadcn/ui components
+import { Button } from '../../components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card'
+import { Badge } from '../../components/ui/badge'
 
-import { HeroSm,HeroMd,Logo,Background, BoyImage,HeroLg } from '../../assets'
-import { portfolioData } from '../../data'
-import { NavLink } from 'react-router-dom'
+import { HeroSm, HeroMd, HeroLg } from '../../assets'
+import { portfolioData, socials } from '../../data'
+
+// Dynamic typing animation
+const TypewriterText = ({ text, delay = 0 }) => {
+  const [displayText, setDisplayText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (currentIndex < text.length) {
+        setDisplayText(prev => prev + text[currentIndex])
+        setCurrentIndex(prev => prev + 1)
+      }
+    }, delay + currentIndex * 100)
+
+    return () => clearTimeout(timeout)
+  }, [currentIndex, text, delay])
+
+  return <span>{displayText}</span>
+}
+
+// Latest activity data (simulated dynamic content)
+const latestActivity = [
+  { type: "code", text: "Pushed 3 commits to agentic-homelab project", time: "2 hours ago" },
+  { type: "blog", text: "Published new blog post about AI development", time: "1 day ago" },
+  { type: "project", text: "Deployed new portfolio website", time: "3 days ago" },
+  { type: "achievement", text: "Reached 1000 GitHub stars", time: "1 week ago" }
+]
+
+// Skills data with dynamic progression
+const skillsData = [
+  { name: "React & Next.js", level: 95, icon: <CodeBracketIcon className="w-6 h-6" /> },
+  { name: "Node.js & Python", level: 90, icon: <CommandLineIcon className="w-6 h-6" /> },
+  { name: "AI & Machine Learning", level: 85, icon: <CubeTransparentIcon className="w-6 h-6" /> },
+  { name: "Cloud & DevOps", level: 80, icon: <RocketLaunchIcon className="w-6 h-6" /> },
+  { name: "System Design", level: 88, icon: <PuzzlePieceIcon className="w-6 h-6" /> },
+  { name: "Problem Solving", level: 93, icon: <LightBulbIcon className="w-6 h-6" /> }
+]
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  }
+}
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6 }
+}
 
 function Home() {
-    //user defined components must strt from capital letters
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date())
+    }, 1000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
-    <div className='border-black border-x-2'>
-      <section className=''>
+    <div className="min-h-screen bg-gradient-to-br from-background to-secondary">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+        
+        <div className="container mx-auto px-4 py-20 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <div className="space-y-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-center gap-2"
+                >
+                  <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                    <SparklesIcon className="w-3 h-3 mr-1" />
+                    Available for work
+                  </Badge>
+                  <Badge variant="secondary" className="bg-green-100 text-green-800 border-green-200">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                    {currentTime.toLocaleTimeString()}
+                  </Badge>
+                </motion.div>
 
-      <div className='container mx-auto gap-8 px-4 flex flex-col md:flex-row items-center '>
-        <div className='md:flex-1 md: order-2 '>
-        <picture className='flex drop-shadow-[10px_-10px_0_rgb(215,189,226,1)]
-              border-black rounded-tl-[150px] rounded-br-[150px]
-              rounded-xl overflow-hidden 
-            ' object-center>
+                <div className="space-y-2">
+                  <h2 className="text-xl md:text-2xl font-medium text-muted-foreground">
+                    Hi 👋 I'm Abhinaw
+                  </h2>
+                  <h1 className="text-5xl lg:text-7xl font-bold tracking-tight">
+                    <TypewriterText text="Full Stack" delay={300} />
+                    <br />
+                    <span className="text-primary">Developer</span>
+                  </h1>
+                </div>
 
-              <source srcSet={HeroSm} width='363' height='222' 
-              media='(max-width: 400px)' type='image/png' />
-              <source srcSet={HeroMd} width='608' height='372' 
-              media='(max-width: 400px)' type='image/jpg' />
-              <img src={HeroLg} width='870' height='532' alt="Me working hard on a computer"/>
+                <p className="text-lg text-muted-foreground max-w-xl leading-relaxed">
+                  I'm a passionate computer science student specializing in building exceptional digital experiences. 
+                  I create modern web applications, AI-powered solutions, and scalable systems that solve real-world problems.
+                </p>
 
-            </picture>
-            
+                <div className="flex flex-wrap gap-4">
+                  <Button size="lg" className="bg-primary hover:bg-primary/90">
+                    <HashLink to="#work" className="flex items-center gap-2">
+                      <RocketLaunchIcon className="w-4 h-4" />
+                      View My Work
+                    </HashLink>
+                  </Button>
+                  <Button variant="outline" size="lg" asChild>
+                    <Link to="/contact">
+                      Let's Connect
+                    </Link>
+                  </Button>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex gap-4 pt-4">
+                  {socials.map((social, index) => (
+                    <motion.a
+                      key={social.name}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-10 h-10 rounded-full bg-muted hover:bg-primary/10 flex items-center justify-center transition-colors"
+                    >
+                      <img src={social.icon} alt={social.alt} className="w-5 h-5" />
+                    </motion.a>
+                  ))}
+                </div>
               </div>
-        <div className='md:flex-1 py-10 object-left-top lg:py-40 lg:px-10 xl: mb-4 si'>
+            </motion.div>
 
-          <h2 className='text-xl md:text-2xl font-bold'>Hi 👋 I'm Abhinaw</h2>
-          <h1 className='text-6xl lg:text-6xl font-bold'
-          >Developer <span className='text-violet-400 '>
-            .</span></h1>
-            <p className=' text-lg max-w-xl mb-6'>
-            I am a computer science student. <br />
-            On this website, you will find a collection of my projects that showcase my skills in programming and software development.
-            </p>
-            <div className=' flex items-baseline gap-4'>
-            <HashLink to ='#work' className='px-6 py-4 rounded-md
-            bg-violet-500 hover:bg-violet-600 text-white'>
-              Selected Work
-            </HashLink>
-            <Link to ='/contact'className='px-6 py-4 rounded-md text-black flex gap-2 hover:text-violet-300'>
-            Let's Talk
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-         <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-        </svg></Link>
-          
-            </div>
-            <div className='mb-8 py-4'>
-
-<ul className='flex gap-6 py-4'>
-  {socials.map((item, index) => (
-    <li key={index}>
-      <a target='_blank' href={item.link} rel='noopener noreferrer'
-      className='py-2 flex flex-col md:flex-row gap-3 items-center justify-center'>
-      <img src={item.icon} alt={item.alt} width='' height='' />
-      {item.name}
-      </a>
-    </li>
-  ))}
-
-</ul>
-</div>
-
+            {/* Right Content - Hero Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <picture>
+                  <source srcSet={HeroSm} width="363" height="222" media="(max-width: 400px)" type="image/png" />
+                  <source srcSet={HeroMd} width="608" height="372" media="(max-width: 768px)" type="image/jpg" />
+                  <img 
+                    src={HeroLg} 
+                    width="870" 
+                    height="532" 
+                    alt="Abhinaw working on computer"
+                    className="w-full h-auto"
+                  />
+                </picture>
+                
+                {/* Floating elements */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="absolute top-4 right-4 bg-primary/20 backdrop-blur-sm rounded-lg p-2"
+                >
+                  <BoltIcon className="w-6 h-6 text-primary" />
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </div>
-
-
-
-
-      </div>
-
-
-
-
       </section>
-      
-      <Scroller
-      text={"🌟Have a project in mind?🌟 Let's get things moving! Have a project in mind?🌟 Let's get things moving! 🌟Have a project in mind?🌟 Let's get things moving!🌟Have a project in mind?🌟Let's get things moving!" }
-      Link="/contact"
-      />
-  <section id="work" className='px-4 pb-12 border-black border-t-2
-      bg-white-600 bg-fixed
-    ' style={{ backgroundImage: "url(" + Background + ")" }} >
 
-      <div className='container mx-auto'>
+      {/* Latest Activity Section */}
+      <section className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4">Latest Activity</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Here's what I've been working on recently
+            </p>
+          </motion.div>
 
-        <div className='text-white text-center py-12'>
-            <h1 className='text-4xl lg:text-5xl xl:text-7xl font-bold mb-4'>
-              Selected Work
-            </h1>
-          <p className='max-w-xl mx-auto text-base'>
-            
-I have been working in the field of development, video editing, graphics designing and Abap development for the past few years. 
-I have gained a lot of experience and knowledge in these fields.
-          </p>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            className="grid gap-4 max-w-2xl mx-auto"
+          >
+            {latestActivity.map((activity, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="flex items-start gap-4 p-4 bg-card rounded-lg border hover:shadow-md transition-shadow"
+              >
+                <div className="w-2 h-2 bg-primary rounded-full mt-2 animate-pulse"></div>
+                <div className="flex-1">
+                  <p className="text-sm font-medium">{activity.text}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
+      </section>
 
-        <div className='grid md:grid-cols-2 gap-8 mb-28'>
-          {portfolioData.map((item, index) => (
-              <a target='_blank' href={item.link} rel='noopener noreferrer
-              md:even:pt-12 ease-in-out duration-75
-              hover:translate-y-[-4px] hover:drop-shadow-[10px_8px_0_rgba(0,0,0,1)]
-            '>
+      {/* Skills Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4">Technical Skills</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Technologies and tools I work with
+            </p>
+          </motion.div>
 
-            <div className='border-2 border-black rounded-xl overflow-hidden bg-black relative'>
-              <img src={item.thumbnail} alt={item.alt} loading ='lazy' />
-            </div>
-            <div className='bg-white border-x-3 border-black border-b-2 rounded-bl-xl rounded-br-xl mx-4 p-4  text-lg flex justify-between gap-4
-            item-center '>
-              <div>
-                <span className='font-bold'>
-                  {item.tittle}
-                </span>
-                <span className='text-zinc-400 '> &#9697; {item.category}</span>
-              </div>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-         <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-        </svg>
-
-            </div>
-          </a>
-        ))}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {skillsData.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                variants={itemVariants}
+                className="group"
+              >
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                        {skill.icon}
+                      </div>
+                      <CardTitle className="text-lg">{skill.name}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-2">
+                      <div className="flex justify-between text-sm">
+                        <span className="text-muted-foreground">Proficiency</span>
+                        <span className="font-medium">{skill.level}%</span>
+                      </div>
+                      <div className="w-full bg-muted rounded-full h-2">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${skill.level}%` }}
+                          transition={{ duration: 1, delay: index * 0.1 }}
+                          className="bg-primary h-2 rounded-full"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-        <Link to={'/work'} className="flex text-xl gap-4 font-bold text-white justify-center mb-8">View all work
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-        </Link>
+      </section>
 
-      </div>
+      {/* Featured Projects Section */}
+      <section id="work" className="py-20 bg-muted/30">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4">Featured Projects</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              A collection of my recent work that showcases my skills in programming and software development
+            </p>
+          </motion.div>
 
-    </section>
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
+            {portfolioData.map((project, index) => (
+              <motion.div
+                key={project.tittle}
+                variants={itemVariants}
+                className="group"
+              >
+                <Card className="h-full hover:shadow-xl transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="aspect-video bg-gradient-to-br from-primary/10 to-secondary/10 rounded-t-lg overflow-hidden">
+                    <img
+                      src={project.thumbnail}
+                      alt={project.alt}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                          {project.tittle}
+                        </CardTitle>
+                        <Badge variant="secondary" className="mt-2">
+                          {project.category}
+                        </Badge>
+                      </div>
+                      <Button variant="ghost" size="icon" asChild>
+                        <a href={project.link} target="_blank" rel="noopener noreferrer">
+                          <RocketLaunchIcon className="w-4 h-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </CardHeader>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
 
-
-    <section id='blog' className='border-black border-t-2 px-4 py-12'>
-      <div className='container mx-auto px-4 py-12'>
-        <div className=' text-center py-12'>
-        <h1 className='text-4xl lg:text-5xl xl: font-bold mb-4' >
-          Blogs!
-        </h1>
-        <p className='max-w-xl mx-auto text-lg '>
-          I've always loved sharing stories with help of these blogs i woud like to share
-          my journey and stories !!
-          enjoy reafd
-        </p>
-          </div>
-          <div className='text-black py-12 grid lg:grid-cols-4 item-center '>
-            <div>
-              <h3 className='text-xl font-bold mb-4'>JPEG</h3>
-              <p className='mb-4 '>
-                I've been clicking photograps from 5 years now and the beauty that a simple
-                jpg hold is beyond anything.
-              </p>
-              <Link to={'/Blogs/jpeg'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center mt-12"
+          >
+            <Button variant="outline" size="lg" asChild>
+              <Link to="/projects">
+                View All Projects
               </Link>
-              <h3 className='text-xl font-bold mb-4'>AR 101</h3>
-              <p className='mb-4 '>
-              In this blog i have shared my insight and basics pf getting started in the world os Augmented Reality 
-              and XR Development in genral
-              </p>
-              <Link to={'/Blogs/AR101'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-              </Link>
-            </div>
-
-
-
-
-            
-            <div className='flex justify-center mb-12 md:mb-0 col-span-2 object-none' ><img src={BoyImage} alt="Blogs" 
-            loading='Lazy'
-            className='border-2 border-purple-400 rounded-full object-fill w-3/6  drop-shadow-[10px_-10_0_rgba(250,204,21,1)]
-            ' /></div>
-            <div><h3 className='text-xl font-bold mb-4'>Daizy Night</h3>
-              <p className='mb-4 '>
-                This is small blog about my Journey to a small village in phelling and how that moment is soo captivating
-              </p>
-              <Link to={'/Blogs/daizy'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-              </Link>
-              <h3 className='text-xl font-bold mb-4'>Stable Diffusion</h3>
-              <p className='mb-4 '>
-              Stable Diffusion is a deep learning, text-to-image model released in 2022. It is primarily used to generate detailed images conditioned on text descriptions.
-              </p>
-              <Link to={'/Blogs/imposter'} className ='flex gap-2 items-center font-bold mb-14 text-lg' >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-              </Link></div>
-          </div>
+            </Button>
+          </motion.div>
         </div>
-    </section>
-    
-   
+      </section>
 
-      </div>
-
-      
+      {/* CTA Section */}
+      <section className="py-20 bg-primary/5">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center max-w-3xl mx-auto"
+          >
+            <h2 className="text-3xl font-bold mb-4">Ready to work together?</h2>
+            <p className="text-muted-foreground mb-8">
+              I'm always excited to collaborate on interesting projects. Let's build something amazing together!
+            </p>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Button size="lg" asChild>
+                <Link to="/contact">
+                  Get In Touch
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild>
+                <a href="#" download>
+                  Download Resume
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
   )
 }
 
